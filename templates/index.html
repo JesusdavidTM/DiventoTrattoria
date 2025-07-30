@@ -1,0 +1,50 @@
+{% extends 'base.html' %}
+{% block title %}Menú - Divento Trattoria{% endblock %}
+{% block content %}
+<section class="hero">
+    <h1>Bienvenido a Divento Trattoria</h1>
+    <p>Auténtica pasta italiana en el corazón de Montería</p>
+</section>
+
+<section id="menu" class="menu-section">
+    <h2>Nuestro Menú</h2>
+    <div class="menu-grid">
+        {% for dish in menu %}
+        <div class="card">
+            <img src="{{ url_for('static', filename='img/' + dish.img) }}" alt="{{ dish.name }}">
+            <h3>{{ dish.name }}</h3>
+            <p>${{ '%.2f'|format(dish.price) }}</p>
+            <button class="add-to-cart" data-id="{{ dish.id }}">Añadir al carrito</button>
+        </div>
+        {% endfor %}
+    </div>
+</section>
+
+<section id="checkout-form" class="checkout-section">
+    <h2>Finalizar Pedido</h2>
+    <div class="form-group">
+        <label for="cust-name">Nombre</label>
+        <input type="text" id="cust-name" placeholder="Tu Nombre">
+    </div>
+    <div class="form-group">
+        <label for="cust-phone">Teléfono</label>
+        <input type="tel" id="cust-phone" placeholder="Tu Teléfono">
+    </div>
+    <div class="form-group">
+        <label for="cust-address">Dirección</label>
+        <input type="text" id="cust-address" placeholder="Tu Dirección de entrega">
+    </div>
+    <button id="place-order" class="btn">Realizar Pedido</button>
+</section>
+
+<section id="about" class="about-section">
+    <h2>Sobre Nosotros</h2>
+    <p>Divento Trattoria ofrece recetas tradicionales italianas elaboradas con ingredientes frescos.</p>
+</section>
+
+<section id="contact" class="contact-section">
+    <h2>Contacto</h2>
+    <p>Reserva al <a href="tel:+571234567890">+57 123 456 7890</a> o escríbenos a <a
+            href="mailto:info@divento.com">info@divento.com</a>.</p>
+</section>
+{% endblock %}

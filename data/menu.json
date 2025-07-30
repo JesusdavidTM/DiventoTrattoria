@@ -1,0 +1,8 @@
+[
+    {"id":1,"name":"Bucatini Antica","price":12.5,"img":"BucatiniAntica.jpg"},
+    {"id":2,"name":"Macarroni Fonduta","price":11.0,"img":"MacarroniFonduta.jpg"},
+    {"id":3,"name":"Spaghetti Verace","price":13.0,"img":"SpaghettiVerace.jpg"},
+    {"id":4,"name":"Fusilli Vento","price":14.5,"img":"FusilliVento.jpg"},
+    {"id":5,"name":"Lasagna Fonduta","price":15.0,"img":"LasañaFonduta.jpg"},
+    {"id":6,"name":"Lasagna Antica","price":12.0,"img":"LasañaAntica.jpg"}
+]
