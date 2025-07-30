@@ -57,18 +57,23 @@ body {
 
 .hero {
     text-align: center;
-    padding: 60px 20px;
-    background: url('/static/img/hero.jpg') center/cover no-repeat;
+    padding: 120px 20px;
+    background: url('/static/img/hero2.jpg') center/cover no-repeat;
+    background-position-y: 91%;
     color: #762016;
 }
 
 .hero h1 {
     font-size: 2.5rem;
     margin-bottom: 10px;
+    color: #762016;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.6);
+    text-align: button;
+
 }
 
 .hero p {
-    font-size: 1.2rem;
+    font-size: 1.2rem;;
 }
 
 .menu-section {
