@@ -11,12 +11,91 @@ body {
     color: #333;
 }
 
+/* Background animation - solo visible en áreas vacías */
+body::before {
+    content: "";
+    position: fixed;
+    top: 0; left: 0; right: 0; bottom: 0;
+    z-index: 0;
+    background: url('/static/img/icono.jpg');
+    background-size: 6vw;
+    background-repeat: repeat;
+    opacity: 0.06;
+    pointer-events: none;
+    animation: float-around 30s ease-in-out infinite;
+}
+
+/* Puntos decorativos */
+.decorative-dots {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: -1;
+}
+
+.dot {
+    position: absolute;
+    width: 4px;
+    height: 4px;
+    background: #762016;
+    border-radius: 50%;
+    opacity: 0.2;
+    animation: pulse 3s ease-in-out infinite;
+}
+
+.dot:nth-child(1) { top: 10%; left: 5%; animation-delay: 0s; }
+.dot:nth-child(2) { top: 15%; right: 10%; animation-delay: 0.5s; }
+.dot:nth-child(3) { bottom: 20%; left: 15%; animation-delay: 1s; }
+.dot:nth-child(4) { bottom: 15%; right: 20%; animation-delay: 1.5s; }
+
+@keyframes float-around {
+    0% { 
+        transform: translate(0, 0) rotate(0deg);
+        background-position: 0 0;
+    }
+    20% {
+        transform: translate(3vw, 2vh) rotate(2deg);
+        background-position: 10vw 5vh;
+    }
+    40% {
+        transform: translate(-2vw, 4vh) rotate(-1deg);
+        background-position: -8vw 15vh;
+    }
+    60% {
+        transform: translate(4vw, -3vh) rotate(3deg);
+        background-position: 15vw -10vh;
+    }
+    80% {
+        transform: translate(-3vw, -2vh) rotate(-2deg);
+        background-position: -12vw -8vh;
+    }
+    100% { 
+        transform: translate(0, 0) rotate(0deg);
+        background-position: 0 0;
+    }
+}
+
+@keyframes pulse {
+    0% { transform: scale(1); opacity: 0.2; }
+    50% { transform: scale(1.5); opacity: 0.4; }
+    100% { transform: scale(1); opacity: 0.2; }
+}
+
+body {
+    position: relative;
+    z-index: 1;
+    /* ...existing code... */
+}
+
+/* ...existing code... */
+
 .header {
     display: flex;
     justify-content: space-between;
     align-items: center;
     padding: 10px 20px;
-    background: #fff;
+    background: #762016;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
     position: sticky;
     top: 0;
@@ -32,11 +111,14 @@ body {
 .nav a {
     margin: 0 10px;
     text-decoration: none;
-    color: #555;
+    color: #f2e1b1;
+    cursor: pointer;
+    transition: transform 0.3s ease-in-out;
+    display: inline-block;
 }
 
 .nav a:hover {
-    color: #762016;
+    transform: scale(1.10);
 }
 
 .cart-icon {
@@ -223,6 +305,20 @@ body {
     }
 }
 
+@media (max-width: 768px) {
+    .menu-section, 
+    .about-section, 
+    .contact-section,
+    .checkout-section {
+        margin: 10px;
+        padding: 20px;
+    }
+    
+    body::before {
+        background-size: 10vw;
+    }
+}
+
 .checkout-section {
     background: #fff;
     padding: 30px 20px;
@@ -270,4 +366,82 @@ body {
 
 #place-order.btn:hover {
     background: #762016;
+}
+
+/* Mejoras visuales generales */
+.menu-section, 
+.about-section, 
+.contact-section,
+.checkout-section,
+.hero {
+    background: rgba(255, 255, 255, 0.95); /* Fondo semi-transparente */
+    backdrop-filter: blur(5px); /* Efecto de desenfoque detrás */
+    border-radius: 12px;
+    margin: 20px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+.card {
+    backdrop-filter: blur(5px);
+    background: rgba(255, 255, 255, 0.97);
+    border: none;
+    box-shadow: 0 4px 8px rgba(118, 32, 22, 0.1);
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 6px 12px rgba(118, 32, 22, 0.2);
+}
+
+.header {
+    background: rgba(118, 32, 22, 0.95);
+    backdrop-filter: blur(10px);
+}
+
+/* Mejora de puntos decorativos */
+.decorative-dots {
+    z-index: -1;
+}
+
+.dot {
+    box-shadow: 0 0 10px rgba(118, 32, 22, 0.3);
+}
+
+/* Mejoras en botones */
+.add-to-cart, 
+#checkout-btn,
+#place-order.btn {
+    background: linear-gradient(45deg, #762016, #8a2820);
+    border-radius: 6px;
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.add-to-cart:hover, 
+#checkout-btn:hover,
+#place-order.btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(118, 32, 22, 0.3);
+    background: linear-gradient(45deg, #8a2820, #762016);
+}
+
+/* Mejora en navegación */
+.nav a {
+    position: relative;
+    padding: 5px 0;
+}
+
+.nav a::after {
+    content: '';
+    position: absolute;
+    bottom: -2px;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background: #f2e1b1;
+    transition: width 0.3s;
+}
+
+.nav a:hover::after {
+    width: 100%;
 }
